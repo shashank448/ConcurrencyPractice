@@ -2,7 +2,7 @@ package org.example.Deadlocks.HashBasedOrder;
 
 public class Bank {
     private final Object tieLock = new Object();
-    public synchronized void transfer(Account source, Account destination, int amount){
+    public void transfer(Account source, Account destination, int amount){
         // Better way to prevent the Deadlock situation
         if(System.identityHashCode(source)==System.identityHashCode(destination)){
             synchronized (tieLock){

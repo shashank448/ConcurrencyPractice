@@ -1,7 +1,7 @@
 package org.example.Deadlocks.BankingProblem;
 
 public class Bank {
-    public synchronized void transfer(Account source, Account destination, int amount){
+    public void transfer(Account source, Account destination, int amount){
         // Better way to prevent the Deadlock situation
         Account acc1, acc2;
         if(source.getId() < destination.getId()){
@@ -14,6 +14,7 @@ public class Bank {
         synchronized (acc1){
             synchronized (acc2){
                 source.deduct(amount);
+
                 destination.add(amount);
             }
         }
